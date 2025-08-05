@@ -1,0 +1,255 @@
+/* Fullscreen layout */
+:root{
+    --text-box: #dee1dd;
+    --dark-bg: #28363d;
+    --light-bg: #2f575d;
+    --std-bg: #658b6f;
+    --accent: #99aead;
+
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+
+  color: var(--dark-bg);
+}
+
+#mainContainer {
+  display: flex;
+  height: 100vh; /* full viewport height */
+  width: 100vw;  /* full viewport width */
+}
+
+/* Sidebar = 25% width */
+#sidebar {
+  flex: 2;
+  background: var(--dark-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  justify-content: space-between;
+
+  
+  color: var(--text-box);  
+}
+
+#taskform{
+    display: flex;
+    flex-direction: column;    
+}
+
+
+
+#taskForm input,
+#taskForm select,
+#taskForm button {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+
+  border: 0;
+  background-color: var(--text-box);
+
+  border-radius: 5px;
+}
+
+#taskForm button.btnSubmit{
+    background: var(--std-bg);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;  
+}
+
+
+
+#colorPalette {
+  display: flex;
+  margin: 10px 0;
+  gap: 5px;
+  border: 0;
+}
+
+.color-option {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.color-option:hover{
+    border: 2px solid white;
+    transition: 0.3s ease;
+}
+
+.color-option.selected {
+  border: 2px solid white;
+  transition: 0.3s ease;
+}
+
+#resetCalendar {
+  background: #e74c3c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+
+
+/* Calendar = 75% width */
+#calendarContainer {
+  flex: 6;
+  padding: 20px;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--std-bg);
+}
+
+#calendar {
+  flex: 1; /* take full height of container */
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--accent);
+  color: var(--dark-bg);
+  height: 100%;
+}
+
+/* Overlay + Modal */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#deleteConfirm, #resetConfirm {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  transition: 0.3s ease;
+}
+
+#deleteConfirm:hover, #resetConfirm:hover {
+  background: #95372c;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+#deleteCancel, #resetCancel {
+  background: var(--text-box);
+  color: var(--std-bg);
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  transition: 0.3s ease;
+}
+
+#deleteCancel:hover, #resetCancel:hover {
+  background: #657265;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border: 1px solid var(--dark-bg) !important;
+
+}
+
+/* Specifically remove the top faint line */
+.fc-theme-standard .fc-scrollgrid {
+  border: none !important;
+}
+
+.fc-scrollgrid {
+  overflow: hidden !important;
+  border: none !important; /* optional: removes the table border */
+}
+
+.fc-scrollgrid {
+  scrollbar-width: none;   /* Firefox */
+}
+
+.fc-scrollgrid::-webkit-scrollbar {
+  display: none;           /* Chrome, Safari */
+}
+
+.fc-event-title-container {
+  color: var(--dark-bg) !important;  /* or any color you want */
+  transition: 0.3s ease;
+  padding: 3px;
+}
+
+.fc-event-title-container > div {
+  color: var(--dark-bg) !important;
+}
+
+.fc-event-title-container:hover{
+    background-color: #e74c3c;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+
+/* Mobile: stack vertically */
+@media (max-width: 900px) {
+  #mainContainer {
+    flex-direction: column;
+  }
+  #sidebar, #calendarContainer {
+    flex: unset;
+    width: 100%;
+    height: auto;
+  }
+  #calendar {
+    height: 70vh;
+  }
+}

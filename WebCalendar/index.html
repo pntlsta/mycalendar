@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar App</title>
+  <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="assets/icon-32x32.png" sizes="32x32">
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+</head>
+<body>
+  <div id="mainContainer">
+    <!-- Sidebar on Left -->
+    <aside id="sidebar">
+      <div class="side-top">
+        <h2>Add Task</h2>
+      <form id="taskForm">
+        <input type="text" id="title" placeholder="Task Title" required>
+        <input type="date" id="date" required>
+
+        <label>Pick a Color:</label>
+        <div id="colorPalette">
+          <span class="color-option" data-color="#e74c3c" style="background:#e74c3c;"></span>
+          <span class="color-option" data-color="#3498db" style="background:#3498db;"></span>
+          <span class="color-option" data-color="#2ecc71" style="background:#2ecc71;"></span>
+          <span class="color-option" data-color="#f1c40f" style="background:#f1c40f;"></span>
+          <span class="color-option" data-color="#9b59b6" style="background:#9b59b6;"></span>
+          <span class="color-option" data-color="#e67e22" style="background:#e67e22;"></span>
+          <span class="color-option" data-color="#34495e" style="background:#34495e;"></span>
+        </div>
+        <input type="hidden" id="color" value="#e74c3c">
+
+        <label>Repeat:</label>
+        <select id="repeat">
+          <option value="none">None</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="biweekly">Every 2 Weeks</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+          <option value="custom">Custom Interval</option>
+        </select>
+
+        <!-- Weekly options -->
+        <div id="weekly-options" style="display:none;">
+          <label><input type="checkbox" value="1"> Mon</label>
+          <label><input type="checkbox" value="3"> Wed</label>
+          <label><input type="checkbox" value="5"> Fri</label>
+        </div>
+
+        <!-- Custom interval -->
+        <div id="custom-interval" style="display:none; margin-top:10px;">
+          <label>Every:</label>
+          <input type="number" id="intervalValue" value="2" min="1" style="width:60px;">
+          <select id="intervalUnit">
+            <option value="days">Days</option>
+            <option value="weeks">Weeks</option>
+            <option value="months">Months</option>
+            <option value="years">Years</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btnSubmit">Add Task</button>
+      </form>
+      </div>
+
+      <button type="button" id="resetCalendar">Reset Calendar</button>
+    </aside>
+
+    <!-- Calendar on Right -->
+    <div id="calendarContainer">
+      <div id="calendar"></div>
+    </div>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="deleteModalOverlay" class="overlay">
+    <div class="modal">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDate"></p>
+      <div class="modal-buttons">
+        <button id="deleteConfirm">Delete</button>
+        <button id="deleteCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Modal -->
+  <div id="resetModalOverlay" class="overlay">
+    <div class="modal">
+      <h3>Reset Calendar?</h3>
+      <p>This will permanently delete <strong>all tasks</strong>.</p>
+      <div class="modal-buttons">
+        <button id="resetConfirm">Yes, Reset</button>
+        <button id="resetCancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
